@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/pages.css">
+    <title>X Top Sobel</title>
+</head>
+<body>
+    <h1>X TOP SOBEL</h1>
+    <br>
+    <div class = "codeDisplay">
+        <pre>
+            <code>
+                function sumAllPixelValues(i, j, kopija, channel, kernel) {
+                    let sum = 0;
+                    for (let x = -1; x <= 1; x++) {
+                        for (let y = -1; y <= 1; y++) {
+                            if ((i + x) < 400 && (j + y) < 700)
+                                sum += parseInt(kopija[i + x][j + y][channel], 10) * kernel[x + 1][y + 1];
+                        }
+                    }
+                    return sum
+                };
+                -----------------------------------------------------------------------------------------------------------
+                function xTopSobel() {
+                    kernel = [
+                        [-1, 0, 1],
+                        [-2, -0, 2],
+                        [-1, 0, 1]
+                    ];
+                    undoArr = copyArray();
+                    let kopija = mojArr;
+                    let t = 0;
+            
+                    for (let i = 1; i < 401; i++) {
+                        for (let j = 1; j < 700; j++) {
+                            for (let channel = 0; channel < 3; channel++) {
+                                let average = sumAllPixelValues(i, j, kopija, channel, kernel);
+                                if (average > 255) imgData.data[t] = 255;
+                                else if (average < 0) imgData.data[t] = 0;
+                                else imgData.data[t] = average;
+                                if (channel !== 2) t++;
+                            }
+                            t += 2;
+                        }
+                        t += 4;
+                    }
+            
+                    ctx.putImageData(imgData, 0, 0);
+                    redoArr = copyArray();
+                    kernel = [];
+                }
+            </code>
+          </pre>
+    </div>
+    <div id = "copyright">
+        <p>&copy; Blaž Kovačič</p>
+    </div>
+</body>
+</html>

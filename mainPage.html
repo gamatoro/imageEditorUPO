@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style/main.css">
+    <title>Image Editor</title>
+</head>
+
+<body>
+    <div class = "loader-container">
+        <div class = "spinner">
+            <img src = "logo.svg">
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">OSNOVNE FUNKCIJE</button>
+            <div class="dropdown-content">
+                <table>
+                    <tr>
+                        <th><button class="buttons" id="gs">
+                                <h3 class="buttonsText">GRAYSCALE</h3>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="th">
+                                <h3 class="buttonsText">THRESHOLDING</h1>
+                            </button></th>
+                        <th><input type="text" id="example" placeholder="0-255"></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="ergb">
+                                <h3 class="buttonsText">ENHANCE RGB</h1>
+                            </button></th>
+                        <th><input type="text" id="ergbV" placeholder="R, G, B"></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="rrgb">
+                                <h3 class="buttonsText">REMOVE RGB</h1>
+                            </button></th>
+                        <th><input type="text" id="rrgbV" placeholder="R, G, B"></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="br">
+                                <h3 class="buttonsText">BRIGHTNESS</h1>
+                            </button></th>
+                        <th><input type="text" id="bright" placeholder="0-255"></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="inv">
+                                <h3 class="buttonsText">INVERT</h1>
+                            </button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">NAPREDNE FUNKCIJE</button>
+            <div class="dropdown-content">
+                <table>
+                    <tr>
+                        <th><button class="buttons" id="boxF">
+                                <h3 class="buttonsText">BOX FILTER</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="lap">
+                                <h3 class="buttonsText">LAPLACEOV</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="xTop">
+                                <h3 class="buttonsText">xTOP SOBEL</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="yTop">
+                                <h3 class="buttonsText">yTOP SOBEL</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="med">
+                                <h3 class="buttonsText">MEDIANIN FILTER</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="sharp">
+                                <h3 class="buttonsText">SHARPENING</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="unsharp">
+                                <h3 class="buttonsText">UNSHARP MASKING</h1>
+                            </button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn" id="undoLet">NAZAJ</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" id="redoLet">NAPREJ</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" id="res">PONASTAVI</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">INFO</button>
+            <div class="dropdown-content">
+                <table>
+                    <tr>
+                        <th><button class="buttons" id="boxF">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/osnovneFunkcije.html',
+                                '_blank'
+                              );">OSNOVNE FUNKCIJE</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="boxF">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/boxFilter.html',
+                                '_blank'
+                              );">BOX FILTER</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="lap">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/laplaceov.html',
+                                '_blank'
+                              );">LAPLACEOV</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="xTop">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/xTopSobel.html',
+                                '_blank'
+                              );">xTOP SOBEL</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="yTop">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/yTopSobel.html',
+                                '_blank'
+                              );">yTOP SOBEL</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="med">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/medianinFilter.html',
+                                '_blank'
+                              );">MEDIANIN FILTER</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="sharp">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/sharpening.html',
+                                '_blank'
+                              );">SHARPENING</h1>
+                            </button></th>
+                    </tr>
+                    <tr>
+                        <th><button class="buttons" id="unsharp">
+                                <h3 class="buttonsText" onclick="window.open(
+                                'pages/unsharpMasking.html',
+                                '_blank'
+                              );">UNSHARP MASKING</h1>
+                            </button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+    <label>SLIKA:</label>
+    <input list="images" type="text" id="inputImageSelector" value="" placeholder="" oninput='changeImage()'>
+    <datalist id="images">
+        <option value="Lenart">
+        <option value="Porec">
+        <option value="Rozna">
+        <option value="Stanjel">
+        <option value="Vipava">
+        <option value="RGB">
+    </datalist>
+
+    <br><br><br><br>
+
+    <span id="imgCan">
+        <img id="mainPic" src="images/rozna.jpg" width="700" height="400" ondrop="drop(event)"
+            ondragover="allowDrop(event)">
+        <canvas id="canvasImage" width="700" height="400" style="border: 1px solid black;"></canvas>
+    </span>
+
+    <br><br>
+
+    <span id="HistogramID">
+        <canvas id="histogram"></canvas>
+        <br>
+        <button class="buttons" id="refr">
+            <h3>OSVEŽI</h3>
+        </button>
+    </span>
+    <script src="src/main.js" type="text/javascript"></script>
+
+    <div id="copy">
+        <p>&copy; Blaž Kovačič</p>
+    </div>
+</body>
+
+</html>

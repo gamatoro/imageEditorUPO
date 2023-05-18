@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/pages.css">
+    <title>Medianin filter</title>
+</head>
+<body>
+    <h1>MEDIANIN FILTER</h1>
+    <br>
+    <div class = "codeDisplay">
+        <pre>
+            <code>
+                function medianin(arrElementov) {
+                    const sorted = arrElementov.slice().sort((a, b) => a - b);
+                    const middle = Math.floor(sorted.length / 2);
+            
+                    if (sorted.length % 2 === 0)
+                        return (sorted[middle - 1] + sorted[middle] / 2);
+                    return sorted[middle];
+                }
+                -----------------------------------------------------------------------------------------------------------
+                function medianinFilter() {
+                    kernel = [
+                        [1, 1, 1],
+                        [1, 1, 1],
+                        [1, 1, 1]
+                    ];
+                    undoArr = copyArray();
+                    let kopija = mojArr;
+                    let t = 0;
+                    let filterValues = [];
+                    for (let i = 1; i < 400; i++) {
+                        for (let j = 1; j < 700; j++) {
+                            for (let channel = 0; channel < 3; channel++) {
+                                try {
+                                    filterValues = [
+                                        parseInt(kopija[i - 1][j + 1][channel], 10),
+                                        parseInt(kopija[i][j + 1][channel], 10),
+                                        parseInt(kopija[i + 1][j + 1][channel], 10),
+                                        parseInt(kopija[i - 1][j][channel], 10),
+                                        parseInt(kopija[i][j][channel], 10),
+                                        parseInt(kopija[i + 1][j][channel], 10),
+                                        parseInt(kopija[i - 1][j - 1][channel], 10),
+                                        parseInt(kopija[i][j - 1][channel], 10),
+                                        parseInt(kopija[i + 1][j - 1][channel], 10)
+                                    ];
+                                    imgData.data[t] = medianin(filterValues);
+                                } catch {}
+            
+                                if (channel !== 2) t++;
+                            }
+                            t += 2;
+                        }
+                        t += 4;
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                    redoArr = copyArray();
+                    kernel = [];
+                }
+            </code>
+          </pre>
+    </div>
+    <div id = "copyright">
+        <p>&copy; Blaž Kovačič</p>
+    </div>
+</body>
+</html>
